@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - BallDestroyer
+  - Ball
   layers:
   - Default
   - TransparentFX

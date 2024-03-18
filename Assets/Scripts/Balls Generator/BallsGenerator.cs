@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum SpawnModes
-{
-    Fixed,
-    Random
-}
+
 
 public class BallsGenerator : MonoBehaviour
 {
     [Header("Settings")]
 
-    [SerializeField] private SpawnModes spawMode = SpawnModes.Fixed;
+    [SerializeField] private GlobalEnum.SpawnModes spawMode;
 
     [Header("Fixed Delay")]
 
@@ -58,6 +54,7 @@ public class BallsGenerator : MonoBehaviour
     }
     public void SpawnBall()
     {
+        int hola = Random.Range(1, 100);
         _instantiateBallsTransform = new Vector2(Random.Range(_collider.bounds.min.x, _collider.bounds.max.x), _collider.transform.position.y);
 
         GameObject NewBall = _pooler.GetInstanceFromPool();
@@ -68,7 +65,7 @@ public class BallsGenerator : MonoBehaviour
     private float GetSpawnDelay()
     {
         float delay = 0f;
-        if (spawMode == SpawnModes.Fixed)
+        if (spawMode == GlobalEnum.SpawnModes.Fixed)
         {
             delay = delayBtwSpawns;
         }
