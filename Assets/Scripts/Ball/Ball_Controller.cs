@@ -26,27 +26,26 @@ public class Ball_Controller : MonoBehaviour
     {
         _randomNum = Random.Range(1, 100);
         SelectBallType();
-       // SelectColor();
     }
 
     public void SelectBallType()// metodo que seleccióna de que tipo y color es la Bola
     {
-        if(_randomNum >= 1 && _randomNum <= 5)
+        if (_randomNum >= 1 && _randomNum <= 5)
         {
             _ballType = GlobalEnum.BallTypes.Multi;
             _renderer.color = Color.green;
         }
-        else if(_randomNum >= 6 && _randomNum <= 10)
+        else if (_randomNum >= 6 && _randomNum <= 10)
         {
             _ballType = GlobalEnum.BallTypes.Negative;
             _renderer.color = Color.black;
         }
-        else if(_randomNum >= 11 && _randomNum <= 15)
+        else if (_randomNum >= 11 && _randomNum <= 15)
         {
             _ballType = GlobalEnum.BallTypes.Positive;
             _renderer.color = Color.red;
         }
-        else if(_randomNum >= 16 && _randomNum <= 20)
+        else if (_randomNum >= 16 && _randomNum <= 20)
         {
             _ballType = GlobalEnum.BallTypes.Rainbow;
             _renderer.color = Color.blue;
@@ -58,47 +57,16 @@ public class Ball_Controller : MonoBehaviour
         }
     }
 
-    public void SelectColor()// Metodo que cambia el color dependiendo del tipo 
-    {
-        switch (_ballType)
-        {
-            case GlobalEnum.BallTypes.Normal:
 
-                _renderer.color = Color.white;
-
-                break;
-            case GlobalEnum.BallTypes.Multi:
-
-                _renderer.color = Color.green;
-
-                break;
-            case GlobalEnum.BallTypes.Rainbow:
-
-                _renderer.color = Color.blue;
-
-                break;
-            case GlobalEnum.BallTypes.Negative:
-
-                _renderer.color = Color.black;
-
-                break;
-            case GlobalEnum.BallTypes.Positive:
-
-                _renderer.color = Color.red;
-
-                break;
-
-            default:
-
-                break;
-        }
-
-    }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag.Equals("BallDestroyer"))// Al colisionar con el destructor desactiva la bola para poder ser usada posteriormente
+        if (col.tag.Equals("BallDestroyer"))// Al colisionar con el destructor se resta la correspondiente vida y se desactiva la bola para poder ser usada posteriormente
         {
+            if (_ballType == GlobalEnum.BallTypes.Normal)// Se comprueba que sea una bola de tipo normal
+            {
+                GameController.Instance.SubstractLife(1);
+            }
             gameObject.SetActive(false);
         }
     }
