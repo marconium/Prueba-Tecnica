@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Points_Manager : MonoBehaviour
 {
-    public void AddPoints(float points)
+    void AddPointsWithMulti(float points)
     {
         GameController.Instance.CurrentPoints += points * GameController.Instance.CurrentPointsMultiplier;
     }
 
-
-    public void AddMultiplier(float multi)
+    void SubstractPointsWithMulti(float points)
+    {
+        GameController.Instance.CurrentPoints -= points * GameController.Instance.CurrentPointsMultiplier;
+    }
+    void AddMultiplier(float multi)
     {
         GameController.Instance.CurrentPointsMultiplier += multi;
     }
@@ -23,28 +26,29 @@ public class Points_Manager : MonoBehaviour
             Ball_Controller _ballcontroller = col.GetComponent<Ball_Controller>();
             if (_ballcontroller.BallType == GlobalEnum.BallTypes.Normal)
             {
-                AddPoints(_ballcontroller.Points);
+                AddPointsWithMulti(_ballcontroller.Points);
             }
             else if (_ballcontroller.BallType == GlobalEnum.BallTypes.Multi)
             {
-                AddPoints(_ballcontroller.Points);
+                AddPointsWithMulti(_ballcontroller.Points);
                 AddMultiplier(1);
             }
             else if (_ballcontroller.BallType == GlobalEnum.BallTypes.Rainbow)
             {
-                AddPoints(_ballcontroller.Points);
+                AddPointsWithMulti(_ballcontroller.Points);
+                int multi = Random.Range(1, 10);
+                AddMultiplier(multi);
+                Debug.Log($"Multi added: {multi}");
             }
             else if (_ballcontroller.BallType == GlobalEnum.BallTypes.Positive)
             {
-                AddPoints(_ballcontroller.Points);
+                AddPointsWithMulti(_ballcontroller.Points);
+                GameController.Instance.AddLife(1);
             }
             else if (_ballcontroller.BallType == GlobalEnum.BallTypes.Negative)
             {
-                AddPoints(_ballcontroller.Points);
+                SubstractPointsWithMulti(_ballcontroller.Points);
             }
-
-
-
 
             col.gameObject.SetActive(false);
         }

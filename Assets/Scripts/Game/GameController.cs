@@ -18,7 +18,9 @@ public class GameController : Singleton<GameController>
     [SerializeField] float _currentPoints;
     [SerializeField] float _currentPointsMultiplier = 1;
 
+    [Header("Controll Variables")]
 
+    [SerializeField] bool isDead;
 
     private void Start()
     {
@@ -33,17 +35,27 @@ public class GameController : Singleton<GameController>
         {
             _currentLives -= value;// Se resta la vida deseada
         }
-        if(_currentLives <= 0)
+        if (_currentLives <= 0)
         {
             EndGame();
         }
         //Mathf.Clamp(_currentLives, 0, Mathf.Infinity);// se realiza un Clamp para evitar que la vida sea menor que zero
     }
-
+    public void AddLife(int value)
+    {
+        if (!isDead)
+        {
+            if (_currentLives < _maxLives)
+            {
+                _currentLives += value;
+            }
+        }
+    }
 
 
     void EndGame()
     {
+        isDead = true;
         Debug.Log("Eliminado");
     }
 }
