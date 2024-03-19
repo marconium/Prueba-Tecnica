@@ -28,7 +28,7 @@ public class Ball_Controller : MonoBehaviour
         SelectBallType();
     }
 
-    public void SelectBallType()// metodo que seleccióna de que tipo y color es la Bola
+    public void SelectBallType()// metodo que seleccióna de que tipo y color es la Bola dependiendo el _randomNum
     {
         if (_randomNum >= 1 && _randomNum <= 5)
         {

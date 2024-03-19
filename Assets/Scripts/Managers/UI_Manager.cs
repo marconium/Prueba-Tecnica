@@ -34,7 +34,7 @@ public class UI_Manager : Singleton<UI_Manager>
     {
         if (_isRumble)
         {
-            Rumble(_currentTransform);
+            Shacke(_currentTransform);// Se activa el Shacke
         }      
     }
 
@@ -47,19 +47,19 @@ public class UI_Manager : Singleton<UI_Manager>
 
 
 
-    public void PointsShakeUI(int value)
+    public void PointsShakeUI(int value)// funcion que llama a la corrutina del points shacke
     {
         StartCoroutine(PointsShake(value));
     }
 
-    public void MultiShakeUI(int value)
+    public void MultiShakeUI(int value)// funcion que llama a la corrutina del multi shacke
     {
         StartCoroutine(MultiShake(value));
     }
 
     IEnumerator MultiShake(int value)
     {
-        if (value == 1)
+        if (value == 1)// Dependiendo del valor proporcionado se aplica un color o otro
         {
             _multipierText.color = Color.green;
         }
@@ -68,23 +68,23 @@ public class UI_Manager : Singleton<UI_Manager>
             _multipierText.color = Color.red;
         }
 
-        _initPos = _multipierText.transform.position;
-        _currentTransform = _multipierText.transform;
-        _isRumble = true;
+        _initPos = _multipierText.transform.position;// se guarda la posición inicial
+        _currentTransform = _multipierText.transform;// se guarda el transform del texto
+        _isRumble = true;// Se activa el Rumle
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.2f);// se espera el tiempo indicado
 
-        _isRumble = false;
-        _multipierText.color = Color.white;
-        _currentTransform.position = _initPos;
-        _currentTransform = null;
+        _isRumble = false;// se desactiva el Rumble
+        _multipierText.color = Color.white;// se devuelve el color al texto
+        _currentTransform.position = _initPos;// se devuelve el texto a su posición inicial
+        _currentTransform = null;// se elimina el current transform
     }
 
 
 
     IEnumerator PointsShake(int value)
     {
-        if (value == 1)
+        if (value == 1)// Dependiendo del valor proporcionado se aplica un color o otro
         {
             _pointsText.color = Color.green;
         }
@@ -93,22 +93,22 @@ public class UI_Manager : Singleton<UI_Manager>
             _pointsText.color = Color.red;
         }
 
-        _initPos = _pointsText.transform.position;
-        _currentTransform = _pointsText.transform;
-        _isRumble = true;
+        _initPos = _pointsText.transform.position;// se guarda la posición inicial
+        _currentTransform = _pointsText.transform;// se guarda el transform del texto
+        _isRumble = true;// Se activa el Rumle
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.2f);// se espera el tiempo indicado
 
-        _isRumble = false;
-        _pointsText.color = Color.white;
-        _currentTransform.position = _initPos;
-        _currentTransform = null;
+        _isRumble = false;// se desactiva el Rumble
+        _pointsText.color = Color.white;// se devuelve el color al texto
+        _currentTransform.position = _initPos;// se devuelve el texto a su posición inicial
+        _currentTransform = null;// se elimina el current transform
 
     }
 
-    void Rumble(Transform transform)
+    void Shacke(Transform transform)
     {
-        transform.position = new Vector2(Random.Range(_initPos.x - 0.1f, _initPos.x + 0.1f), Random.Range(_initPos.y - 0.1f, _initPos.y + 0.1f));
+        transform.position = new Vector2(Random.Range(_initPos.x - 0.1f, _initPos.x + 0.1f), Random.Range(_initPos.y - 0.1f, _initPos.y + 0.1f));// se modifican los valores de posicion para simular un Shacke
     }
 
     public void UpdatePointsUI()// Se actualizan los puntos mostrados en pantalla

@@ -42,29 +42,29 @@ public class GameController : Singleton<GameController>
         }
         //Mathf.Clamp(_currentLives, 0, Mathf.Infinity);// se realiza un Clamp para evitar que la vida sea menor que zero
     }
-    public void AddLife(int value)
+    public void AddLife(int value)// Funcion para añadir vida
     {
-        if (!isDead)
+        if (!isDead)// Si no esta muerto
         {
-            if (_currentLives < _maxLives)
+            if (_currentLives < _maxLives)// mientras tengas menos vidas que max lives
             {
-                _currentLives += value;
+                _currentLives += value;// se añade vida
                 UI_Manager.Instance.AddLiveUI();// Se cambia en la UI
             }
         }
     }
-    public void AddMaxLife(int value)
+    public void AddMaxLife(int value)// Funcion para añadir vida maxima
     {
-        if (!isDead)
+        if (!isDead)// Si no esta muerto
         {
-            if(_maxLives + value <= 10)
+            if(_maxLives + value <= 10)// si la suma del valor a las vidas maximas da menor o igual a 10 
             {
-                _maxLives += value;
+                _maxLives += value;// se suma el valor
             }
         }
     }
 
-    void EndGame()
+    void EndGame()// metodo de finalización del juego
     {
         isDead = true;
         Debug.Log("Eliminado");
