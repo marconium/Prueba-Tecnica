@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class UI_Manager : Singleton<UI_Manager>
 {
@@ -12,10 +13,35 @@ public class UI_Manager : Singleton<UI_Manager>
 
     [SerializeField] GameObject[] _lives;
 
+
+    [Header("Text References")]
+
+    [SerializeField] TextMeshProUGUI _pointsText;
+    [SerializeField] TextMeshProUGUI _multipierText;
+
     private void Awake()
     {
-        ActivateLives();// Se activan las primeras vidas
+        ActivateUI();// Se activa la UI
     }
+
+
+    void ActivateUI()
+    {
+        ActivateLives();
+        UpdatePointsUI();
+        UpdateMultiplierUI();
+    }
+
+    public void UpdatePointsUI()// Se actualizan los puntos mostrados en pantalla
+    {
+        _pointsText.text = $"Points: {(int)GameController.Instance.CurrentPoints}";
+    }
+
+    public void UpdateMultiplierUI()// Se actualiza el multiplicador mostrado en pantalla
+    {
+        _multipierText.text = $"Multi: x{GameController.Instance.CurrentPointsMultiplier}";
+    }
+
 
     void ActivateLives()// Se activan las vidas acorde con la vida maxima que tengas
     {

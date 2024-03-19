@@ -36,9 +36,9 @@ public class GameController : Singleton<GameController>
             _currentLives -= value;// Se resta la vida deseada
             UI_Manager.Instance.SubstractLiveUI();// Se cambia en la UI
         }
-        if (_currentLives <= 0)
+        if (_currentLives <= 0)// si las vidas son menor o igual a 0
         {
-            EndGame();
+            EndGame();// Se llama al metodo que acaba el juego
         }
         //Mathf.Clamp(_currentLives, 0, Mathf.Infinity);// se realiza un Clamp para evitar que la vida sea menor que zero
     }
