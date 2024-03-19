@@ -26,34 +26,39 @@ public class Ball_Controller : MonoBehaviour
     {
         _randomNum = Random.Range(1, 100);
         SelectBallType();
-        SelectColor();
+       // SelectColor();
     }
 
-    public void SelectBallType()
+    public void SelectBallType()// metodo que seleccióna de que tipo y color es la Bola
     {
-        if(_randomNum >= 5 && _randomNum >= 25)
+        if(_randomNum >= 1 && _randomNum <= 5)
         {
             _ballType = GlobalEnum.BallTypes.Multi;
+            _renderer.color = Color.green;
         }
-        else if(_randomNum == 2)
+        else if(_randomNum >= 6 && _randomNum <= 10)
         {
             _ballType = GlobalEnum.BallTypes.Negative;
+            _renderer.color = Color.black;
         }
-        else if(_randomNum == 3)
+        else if(_randomNum >= 11 && _randomNum <= 15)
         {
             _ballType = GlobalEnum.BallTypes.Positive;
+            _renderer.color = Color.red;
         }
-        else if(_randomNum == 4)
+        else if(_randomNum >= 16 && _randomNum <= 20)
         {
             _ballType = GlobalEnum.BallTypes.Rainbow;
+            _renderer.color = Color.blue;
         }
         else
         {
             _ballType = GlobalEnum.BallTypes.Normal;
+            _renderer.color = Color.white;
         }
     }
 
-    public void SelectColor()
+    public void SelectColor()// Metodo que cambia el color dependiendo del tipo 
     {
         switch (_ballType)
         {
