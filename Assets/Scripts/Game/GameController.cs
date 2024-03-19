@@ -6,6 +6,8 @@ public class GameController : Singleton<GameController>
 {
     public float CurrentPoints { get => _currentPoints; set => _currentPoints = value; }
     public float CurrentPointsMultiplier { get => _currentPointsMultiplier; set => _currentPointsMultiplier = value; }
+    public int MaxLives { get => _maxLives; set => _maxLives = value; }
+    public int CurrentLives { get => _currentLives; set => _currentLives = value; }
 
     [Header("Lives Variables")]
 
@@ -27,13 +29,12 @@ public class GameController : Singleton<GameController>
         _currentLives = _maxLives;
     }
 
-
-
     public void SubstractLife(int value)// Metodo para restar vida
     {
         if (_currentLives >= 1)
         {
             _currentLives -= value;// Se resta la vida deseada
+            UI_Manager.Instance.SubstractLiveUI();// Se cambia en la UI
         }
         if (_currentLives <= 0)
         {
@@ -48,6 +49,7 @@ public class GameController : Singleton<GameController>
             if (_currentLives < _maxLives)
             {
                 _currentLives += value;
+                UI_Manager.Instance.AddLiveUI();// Se cambia en la UI
             }
         }
     }
