@@ -8,18 +8,21 @@ public class Points_Manager : MonoBehaviour
     {
         GameController.Instance.CurrentPoints += points * GameController.Instance.CurrentPointsMultiplier;// Se suman los puntos multiplicados por el multiplicador
         UI_Manager.Instance.UpdatePointsUI();// Se actualiza la UI
+        UI_Manager.Instance.PointsShakeUI(1);// Se realiza un pequeño shake al texto cuando se modifica
     }
 
     void SubstractPointsWithMulti(float points)// Se restan los puntos multiplicados por el Multiplicador
     {
         GameController.Instance.CurrentPoints -= points * GameController.Instance.CurrentPointsMultiplier;
         UI_Manager.Instance.UpdatePointsUI();// Se actualiza la UI
+        UI_Manager.Instance.PointsShakeUI(-1);// Se realiza un pequeño shake al texto cuando se modifica
     }
 
     void AddMultiplier(float multi)// Se suma Multiplicador
     {
         GameController.Instance.CurrentPointsMultiplier += multi;
         UI_Manager.Instance.UpdateMultiplierUI();// Se actualiza la UI
+        UI_Manager.Instance.MultiShakeUI(1);// Se realiza un pequeño shake al texto cuando se modifica
     }
 
 
@@ -43,9 +46,10 @@ public class Points_Manager : MonoBehaviour
                 int multi = Random.Range(1, 10);
                 AddMultiplier(multi);
             }
-            else if (_ballcontroller.BallType == GlobalEnum.BallTypes.Positive)// Si es Positive se suman puntos y una vida
+            else if (_ballcontroller.BallType == GlobalEnum.BallTypes.Positive)// Si es Positive se suman puntos, una vida maxima y una vida
             {
                 AddPointsWithMulti(_ballcontroller.Points);
+                GameController.Instance.AddMaxLife(1);
                 GameController.Instance.AddLife(1);
             }
             else if (_ballcontroller.BallType == GlobalEnum.BallTypes.Negative)// Si es Negative se restan puntos

@@ -53,7 +53,16 @@ public class GameController : Singleton<GameController>
             }
         }
     }
-
+    public void AddMaxLife(int value)
+    {
+        if (!isDead)
+        {
+            if(_maxLives + value <= 10)
+            {
+                _maxLives += value;
+            }
+        }
+    }
 
     void EndGame()
     {
