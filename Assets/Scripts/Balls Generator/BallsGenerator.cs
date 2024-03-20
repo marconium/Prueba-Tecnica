@@ -43,13 +43,16 @@ public class BallsGenerator : MonoBehaviour
     }
     private void Update()
     {
-        _spawnTimer -= Time.deltaTime;// se resta el tiempo transcurrido al Timer
-        if (_spawnTimer < 0)// si el timer es menor que 0 
+        if (!GameController.Instance.IsDead)
         {
-            _spawnTimer = GetSpawnDelay();// se vuelve a poner bien el delay
+            _spawnTimer -= Time.deltaTime;// se resta el tiempo transcurrido al Timer
+            if (_spawnTimer < 0)// si el timer es menor que 0 
+            {
+                _spawnTimer = GetSpawnDelay();// se vuelve a poner bien el delay
 
-            SpawnBall();// se espawnea una bola
+                SpawnBall();// se espawnea una bola
 
+            }
         }
     }
     public void SpawnBall()

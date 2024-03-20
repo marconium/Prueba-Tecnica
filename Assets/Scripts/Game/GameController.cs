@@ -8,6 +8,7 @@ public class GameController : Singleton<GameController>
     public float CurrentPointsMultiplier { get => _currentPointsMultiplier; set => _currentPointsMultiplier = value; }
     public int MaxLives { get => _maxLives; set => _maxLives = value; }
     public int CurrentLives { get => _currentLives; set => _currentLives = value; }
+    public bool IsDead { get => isDead; set => isDead = value; }
 
     [Header("Lives Variables")]
 
@@ -28,6 +29,7 @@ public class GameController : Singleton<GameController>
     {
         _currentLives = _maxLives;
     }
+
 
     public void SubstractLife(int value)// Metodo para restar vida
     {

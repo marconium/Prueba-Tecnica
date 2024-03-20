@@ -19,11 +19,16 @@ public class UI_Manager : Singleton<UI_Manager>
     [SerializeField] TextMeshProUGUI _pointsText;
     [SerializeField] TextMeshProUGUI _multipierText;
 
-    [Header("Rumble Variables")]
+    [Header("Shake Variables")]
 
     [SerializeField] Transform _currentTransform;
     [SerializeField] Vector2 _initPos;
-    [SerializeField] bool _isRumble;
+    [SerializeField] bool _isShake;
+
+    [Header("Menu Reference")]
+
+    [SerializeField] GameObject _menuObj;
+
     private void Awake()
     {
         ActivateUI();// Se activa la UI
@@ -32,10 +37,15 @@ public class UI_Manager : Singleton<UI_Manager>
 
     private void Update()
     {
-        if (_isRumble)
+        if (_isShake)
         {
-            Shacke(_currentTransform);// Se activa el Shacke
-        }      
+            Shake(_currentTransform);// Se activa el Shake
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            HandleMenu();
+        }
     }
 
     void ActivateUI()
@@ -45,6 +55,26 @@ public class UI_Manager : Singleton<UI_Manager>
         UpdateMultiplierUI();
     }
 
+
+    void HandleMenu()
+    {
+        if(_menuObj.activeSelf == false)
+        {
+            _menuObj.SetActive(true);
+            Time.timeScale = 0;
+        }
+        else 
+        {
+            _menuObj.SetActive(false);
+            Time.timeScale = 1;
+        }
+    }
+
+    public void ClosePuseMenu()
+    {
+        _menuObj.SetActive(false);
+        Time.timeScale = 1;
+    }
 
 
     public void PointsShakeUI(int value)// funcion que llama a la corrutina del points shacke
@@ -70,11 +100,11 @@ public class UI_Manager : Singleton<UI_Manager>
 
         _initPos = _multipierText.transform.position;// se guarda la posición inicial
         _currentTransform = _multipierText.transform;// se guarda el transform del texto
-        _isRumble = true;// Se activa el Rumle
+        _isShake = true;// Se activa el Rumle
 
         yield return new WaitForSeconds(0.2f);// se espera el tiempo indicado
 
-        _isRumble = false;// se desactiva el Rumble
+        _isShake = false;// se desactiva el Shake
         _multipierText.color = Color.white;// se devuelve el color al texto
         _currentTransform.position = _initPos;// se devuelve el texto a su posición inicial
         _currentTransform = null;// se elimina el current transform
@@ -95,20 +125,20 @@ public class UI_Manager : Singleton<UI_Manager>
 
         _initPos = _pointsText.transform.position;// se guarda la posición inicial
         _currentTransform = _pointsText.transform;// se guarda el transform del texto
-        _isRumble = true;// Se activa el Rumle
+        _isShake = true;// Se activa el Rumle
 
         yield return new WaitForSeconds(0.2f);// se espera el tiempo indicado
 
-        _isRumble = false;// se desactiva el Rumble
+        _isShake = false;// se desactiva el Shake
         _pointsText.color = Color.white;// se devuelve el color al texto
         _currentTransform.position = _initPos;// se devuelve el texto a su posición inicial
         _currentTransform = null;// se elimina el current transform
 
     }
 
-    void Shacke(Transform transform)
+    void Shake(Transform transform)
     {
-        transform.position = new Vector2(Random.Range(_initPos.x - 0.1f, _initPos.x + 0.1f), Random.Range(_initPos.y - 0.1f, _initPos.y + 0.1f));// se modifican los valores de posicion para simular un Shacke
+        transform.position = new Vector2(Random.Range(_initPos.x - 0.1f, _initPos.x + 0.1f), Random.Range(_initPos.y - 0.1f, _initPos.y + 0.1f));// se modifican los valores de posicion para simular un Shake
     }
 
     public void UpdatePointsUI()// Se actualizan los puntos mostrados en pantalla
