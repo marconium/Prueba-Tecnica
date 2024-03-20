@@ -38,7 +38,10 @@ public class GameController : Singleton<GameController>
         }
         if (_currentLives <= 0)// si las vidas son menor o igual a 0
         {
-            EndGame();// Se llama al metodo que acaba el juego
+            if (!isDead)
+            {
+                EndGame();// Se llama al metodo que acaba el juego
+            }
         }
         //Mathf.Clamp(_currentLives, 0, Mathf.Infinity);// se realiza un Clamp para evitar que la vida sea menor que zero
     }
@@ -57,7 +60,7 @@ public class GameController : Singleton<GameController>
     {
         if (!isDead)// Si no esta muerto
         {
-            if(_maxLives + value <= 10)// si la suma del valor a las vidas maximas da menor o igual a 10 
+            if (_maxLives + value <= 10)// si la suma del valor a las vidas maximas da menor o igual a 10 
             {
                 _maxLives += value;// se suma el valor
             }
@@ -67,6 +70,11 @@ public class GameController : Singleton<GameController>
     void EndGame()// metodo de finalización del juego
     {
         isDead = true;
+
+        SaveData data = new SaveData(Data_Manager.Instance.SavedData.Count + 1, (int)_currentPoints, (int)_currentPointsMultiplier);// se crea la variable que se guardara
+
+        Data_Manager.Instance.AddNewSave(data);// se guardan los datos del Game
+
         Debug.Log("Eliminado");
     }
 }
