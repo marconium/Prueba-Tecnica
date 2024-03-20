@@ -9,6 +9,7 @@ public class GameController : Singleton<GameController>
     public int MaxLives { get => _maxLives; set => _maxLives = value; }
     public int CurrentLives { get => _currentLives; set => _currentLives = value; }
     public bool IsDead { get => isDead; set => isDead = value; }
+    public bool CanOpenMenu { get => _canOpenMenu; set => _canOpenMenu = value; }
 
     [Header("Lives Variables")]
 
@@ -24,10 +25,12 @@ public class GameController : Singleton<GameController>
     [Header("Controll Variables")]
 
     [SerializeField] bool isDead;
+    [SerializeField] bool _canOpenMenu;
 
     private void Start()
     {
         _currentLives = _maxLives;
+        _canOpenMenu = true;
     }
 
 
@@ -72,10 +75,15 @@ public class GameController : Singleton<GameController>
     void EndGame()// metodo de finalización del juego
     {
         isDead = true;
+        _canOpenMenu = false;
+
+        StartCoroutine(UI_Manager.Instance.FinalGame());
 
         SaveData data = new SaveData(Data_Manager.Instance.SavedData.Count + 1, (int)_currentPoints, (int)_currentPointsMultiplier);// se crea la variable que se guardara
 
         Data_Manager.Instance.AddNewSave(data);// se guardan los datos del Game
+
+        Data_Manager.Instance.SaveData();
 
         Debug.Log("Eliminado");
     }

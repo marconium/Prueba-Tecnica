@@ -29,6 +29,10 @@ public class UI_Manager : Singleton<UI_Manager>
 
     [SerializeField] GameObject _menuObj;
 
+    [Header("Final Panel Reference")]
+
+    [SerializeField] GameObject _finalPanel;
+
     private void Awake()
     {
         ActivateUI();// Se activa la UI
@@ -42,7 +46,7 @@ public class UI_Manager : Singleton<UI_Manager>
             Shake(_currentTransform);// Se activa el Shake
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && GameController.Instance.CanOpenMenu)
         {
             HandleMenu();
         }
@@ -74,6 +78,15 @@ public class UI_Manager : Singleton<UI_Manager>
     {
         _menuObj.SetActive(false);
         Time.timeScale = 1;
+    }
+
+    public IEnumerator FinalGame()
+    {
+        _finalPanel.SetActive(true);
+
+        yield return new WaitForSeconds(2);
+
+        Scene_Manager.Instance.LoadScene(0);
     }
 
 

@@ -28,7 +28,7 @@ public class Points_Manager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag.Equals("Ball"))
+        if (col.tag.Equals("Ball") && !GameController.Instance.IsDead)
         {
             Ball_Controller _ballcontroller = col.GetComponent<Ball_Controller>();// Se guarda el Ball Controller
             if (_ballcontroller.BallType == GlobalEnum.BallTypes.Normal)// Si la Bola es normal se suman Puntos

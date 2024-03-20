@@ -22,11 +22,16 @@ public class Data_Manager : Singleton<Data_Manager>
 
         DontDestroyOnLoad(this.gameObject);
 
-        savedData = FileHandler.ReadListFromJSON<SaveData>(filename);// se cargan los guardados
+        SaveData();
     }
     private void Start()
     {
         
+    }
+
+    public void SaveData()
+    {
+        savedData = FileHandler.ReadListFromJSON<SaveData>(filename);// se cargan los guardados
     }
 
     public void AddNewSave(SaveData data)// metodo para guardar los datos de las nuevas partidas
