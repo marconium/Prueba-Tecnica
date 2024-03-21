@@ -62,12 +62,12 @@ public class UI_Manager : Singleton<UI_Manager>
 
     void HandleMenu()
     {
-        if(_menuObj.activeSelf == false)
+        if (_menuObj.activeSelf == false)
         {
             _menuObj.SetActive(true);
             Time.timeScale = 0;
         }
-        else 
+        else
         {
             _menuObj.SetActive(false);
             Time.timeScale = 1;
@@ -92,12 +92,13 @@ public class UI_Manager : Singleton<UI_Manager>
 
     public void PointsShakeUI(int value)// funcion que llama a la corrutina del points shacke
     {
-        StartCoroutine(PointsShake(value));
+        StartCoroutine(PointsShake(value, _pointsText));
     }
 
     public void MultiShakeUI(int value)// funcion que llama a la corrutina del multi shacke
     {
-        StartCoroutine(MultiShake(value));
+        StartCoroutine(PointsShake(value, _multipierText));
+        //  StartCoroutine(MultiShake(value));
     }
 
     IEnumerator MultiShake(int value)
@@ -125,27 +126,30 @@ public class UI_Manager : Singleton<UI_Manager>
 
 
 
-    IEnumerator PointsShake(int value)
+    IEnumerator PointsShake(int value, TextMeshProUGUI text)
     {
         if (value == 1)// Dependiendo del valor proporcionado se aplica un color o otro
         {
-            _pointsText.color = Color.green;
+            text.color = Color.green;
         }
         else if (value == -1)
         {
-            _pointsText.color = Color.red;
+            text.color = Color.red;
         }
 
-        _initPos = _pointsText.transform.position;// se guarda la posición inicial
-        _currentTransform = _pointsText.transform;// se guarda el transform del texto
+        _initPos = text.transform.position;// se guarda la posición inicial
+        _currentTransform = text.transform;// se guarda el transform del texto
         _isShake = true;// Se activa el Rumle
 
         yield return new WaitForSeconds(0.2f);// se espera el tiempo indicado
 
         _isShake = false;// se desactiva el Shake
-        _pointsText.color = Color.white;// se devuelve el color al texto
-        _currentTransform.position = _initPos;// se devuelve el texto a su posición inicial
-        _currentTransform = null;// se elimina el current transform
+        text.color = Color.white;// se devuelve el color al texto
+        if (_currentTransform != null)
+        {
+            _currentTransform.position = _initPos;// se devuelve el texto a su posición inicial
+            _currentTransform = null;// se elimina el current transform
+        }
 
     }
 
