@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d4f76d899f304864a909aeb20af0f0f1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -102,7 +102,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.63
 --- !u!50 &4271020930034066936
 Rigidbody2D:
   serializedVersion: 4
@@ -139,3 +139,9 @@ MonoBehaviour:
   _points: 1
   _ballType: 0
   _renderer: {fileID: 4271020930034066938}
+  _normalSprite: {fileID: 21300000, guid: d4f76d899f304864a909aeb20af0f0f1, type: 3}
+  _multiSprite: {fileID: 21300000, guid: 9d0743122f4a68c4f88f8a18e491f4cd, type: 3}
+  _positiveSprite: {fileID: 21300000, guid: 2d0f805d8b9545f4fbe2a22cf86508f5, type: 3}
+  _negativeSprite: {fileID: 21300000, guid: 9e1f5e74528314a47a56f47519c8fa01, type: 3}
+  _rainbowSprite: {fileID: 21300000, guid: cbd0165923f3c754aa9c651a158b85b8, type: 3}
+  _collider: {fileID: 4271020930034066937}

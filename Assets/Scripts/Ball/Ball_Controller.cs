@@ -21,7 +21,21 @@ public class Ball_Controller : MonoBehaviour
 
     [SerializeField] SpriteRenderer _renderer;
 
+    [Header("Sprites References")]
+
+    [SerializeField] Sprite _normalSprite;
+    [SerializeField] Sprite _multiSprite;
+    [SerializeField] Sprite _positiveSprite;
+    [SerializeField] Sprite _negativeSprite;
+    [SerializeField] Sprite _rainbowSprite;
+
+    [Header("Collider Reference")]
+
+    [SerializeField] CircleCollider2D _collider;
+
     private int _randomNum;
+
+
     private void OnEnable()
     {
         _randomNum = Random.Range(1, 100);
@@ -32,31 +46,53 @@ public class Ball_Controller : MonoBehaviour
     {
         if (_randomNum >= 1 && _randomNum <= 5)
         {
-            _ballType = GlobalEnum.BallTypes.Multi;
-            _renderer.color = Color.green;
+            _ballType = GlobalEnum.BallTypes.Multi;         
         }
         else if (_randomNum >= 6 && _randomNum <= 10)
         {
             _ballType = GlobalEnum.BallTypes.Negative;
-            _renderer.color = Color.black;
         }
         else if (_randomNum >= 11 && _randomNum <= 15)
         {
             _ballType = GlobalEnum.BallTypes.Positive;
-            _renderer.color = Color.red;
         }
         else if (_randomNum >= 16 && _randomNum <= 20)
         {
             _ballType = GlobalEnum.BallTypes.Rainbow;
-            _renderer.color = Color.blue;
         }
         else
         {
             _ballType = GlobalEnum.BallTypes.Normal;
-            _renderer.color = Color.white;
         }
+        PlaceSprite(_ballType);
     }
 
+    void PlaceSprite(GlobalEnum.BallTypes type)
+    {
+        switch (type)
+        {
+            case GlobalEnum.BallTypes.Normal:
+                _renderer.sprite = _normalSprite;
+                _collider.offset = new Vector2(0, 0f);
+                break;
+            case GlobalEnum.BallTypes.Multi:
+                _renderer.sprite = _multiSprite;
+                _collider.offset = new Vector2(0, -0.31f);
+                break;
+            case GlobalEnum.BallTypes.Rainbow:
+                _renderer.sprite = _rainbowSprite;
+                _collider.offset = new Vector2(0, 0f);
+                break;
+            case GlobalEnum.BallTypes.Negative:
+                _renderer.sprite = _negativeSprite;
+                _collider.offset = new Vector2(0, 0f);
+                break;
+            case GlobalEnum.BallTypes.Positive:
+                _renderer.sprite = _positiveSprite;
+                _collider.offset = new Vector2(0, 0f);
+                break;          
+        }
+    }
 
 
     private void OnTriggerEnter2D(Collider2D col)
