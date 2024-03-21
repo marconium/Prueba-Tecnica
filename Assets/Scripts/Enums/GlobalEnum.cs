@@ -18,4 +18,10 @@ public class GlobalEnum : Singleton<GlobalEnum>
         Fixed,
         Random
     }
+
+    public enum AnimationId
+    {
+        Walk = 0,
+        Absorb = 1
+    }
 }

@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Points_Manager : MonoBehaviour
 {
+
+    [Header("Animator Reference")]
+
+    [SerializeField] Animator _animator;
+
     void AddPointsWithMulti(float points)// Metodo para sumar puntos con multi
     {
         GameController.Instance.CurrentPoints += points * GameController.Instance.CurrentPointsMultiplier;// Se suman los puntos multiplicados por el multiplicador
@@ -61,7 +66,7 @@ public class Points_Manager : MonoBehaviour
         {
             ResetMulti();
         }
-       
+        AnimatorController.Instance.Play(GlobalEnum.AnimationId.Absorb);
     }
 
 
