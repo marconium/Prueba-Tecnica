@@ -30,7 +30,6 @@ public class Menu_UI_Manager : MonoBehaviour
     [SerializeField] int _average;
     [SerializeField] int _maxPoints;
     [SerializeField] int _minPoints;
-    [SerializeField] float _prcent;
 
     private void Start()
     {
@@ -116,15 +115,15 @@ public class Menu_UI_Manager : MonoBehaviour
 
     void ShowMoreThan50PointsPrcent()
     {
-        _moreTha50PrcentText.text = $"Percentage of doing more than 50: {PrcetOfDoingXOrMorePoints(50)}%";
+        _moreTha50PrcentText.text = $"Percentage of doing more than 50: {PrcetOfDoingXOrMorePoints(50).ToString("F0")}%";
     }
     void ShowMoreThan100PointsPrcent()
     {
-        _moreThan100PrcentText.text = $"Percentage of doing more than 100: {PrcetOfDoingXOrMorePoints(100)}%";
+        _moreThan100PrcentText.text = $"Percentage of doing more than 100: {PrcetOfDoingXOrMorePoints(100).ToString("F0")}%";
     }
     void ShowMoreThan1000PointsPrcent()
     {
-        _moreThan1000PrcentText.text = $"Percentage of doing more than 1000: {PrcetOfDoingXOrMorePoints(1000)}%";
+        _moreThan1000PrcentText.text = $"Percentage of doing more than 1000: {PrcetOfDoingXOrMorePoints(1000).ToString("F0")}%";
     }
 
 
@@ -132,21 +131,17 @@ public class Menu_UI_Manager : MonoBehaviour
     {
 
         int valueDoneCount = 0;
-        int maxcount = 0;
         for (int i = 0; i < Data_Manager.Instance.SavedData.Count; i++)
         {
             if (Data_Manager.Instance.SavedData[i]._points >= value)
             {
                 valueDoneCount++;
             }
-            maxcount++;
         }
-        Debug.Log(valueDoneCount);
-        Debug.Log(Data_Manager.Instance.SavedData.Count);
-        _prcent = (valueDoneCount / Data_Manager.Instance.SavedData.Count) * 100;
+      
+       float prcent = (float)(valueDoneCount / (float)Data_Manager.Instance.SavedData.Count) * 100;
 
-        Debug.Log(_prcent);
-        return _prcent;
+        return prcent;
     }
 
 
