@@ -33,13 +33,13 @@ public class Menu_UI_Manager : MonoBehaviour
 
     private void Start()
     {
-        ShowSavedGamesData();
-        ShowTotalPoints();
-        ShowStatistics();
-        AudioManager.Instance.PlayMusic(AudioManager.Instance.MenuMusic);
+        ShowSavedGamesData();// se mustran las partidas guardadas
+        ShowTotalPoints();// se mustran los puntos totales
+        ShowStatistics();// se muestran las estadisticas
+        AudioManager.Instance.PlayMusic(AudioManager.Instance.MenuMusic);// se inicia la musica del menu
     }
 
-    void ShowSavedGamesData()
+    void ShowSavedGamesData()// metodo que accede al listado de guardados y los muestra en pantalla
     {
         for (int i = 0; i < Data_Manager.Instance.SavedData.Count; i++)
         {
@@ -52,7 +52,7 @@ public class Menu_UI_Manager : MonoBehaviour
         }
     }
 
-    void ShowTotalPoints()
+    void ShowTotalPoints()// metodo que muestra la puntuación total
     {
         for (int i = 0; i < Data_Manager.Instance.SavedData.Count; i++)
         {
@@ -62,7 +62,7 @@ public class Menu_UI_Manager : MonoBehaviour
         _totalPointsText.text = $"Total Points Earned: {_totalPoints}";
     }
 
-    void ShowStatistics()
+    void ShowStatistics()// metodo que muestra todas las estadisticas, si hay alguna partida guardada
     {
         if (Data_Manager.Instance.SavedData.Count >= 1)
         {
@@ -76,14 +76,14 @@ public class Menu_UI_Manager : MonoBehaviour
 
     }
 
-    void ShowAverage()
+    void ShowAverage()// metodo que muestra la media de puntos
     {
         _average = (_totalPoints / Data_Manager.Instance.SavedData.Count);
 
         _averageObtainedText.text = $"Average  Obtained: {_average}";
     }
 
-    void ShowMaxPoints()
+    void ShowMaxPoints()// metodo que muestra los puntos maximos realizados en una partida
     {
         for (int i = 0; i < Data_Manager.Instance.SavedData.Count; i++)
         {
@@ -98,7 +98,7 @@ public class Menu_UI_Manager : MonoBehaviour
         _maxObtainedText.text = $"Max Obtained: {_maxPoints}";
     }
 
-    void ShowMinPoints()
+    void ShowMinPoints()// metodo que muestra los puntos minimos realizados en una partida
     {
         _minPoints = 20000;
         for (int i = 0; i < Data_Manager.Instance.SavedData.Count; i++)
@@ -114,21 +114,21 @@ public class Menu_UI_Manager : MonoBehaviour
         _minObtainedText.text = $"Min Obtained: {_minPoints}";
     }
 
-    void ShowMoreThan50PointsPrcent()
+    void ShowMoreThan50PointsPrcent()// metodo que muestra el porcentage de hacer x numero de puntos 
     {
         _moreTha50PrcentText.text = $"Percentage of doing more than 50: {PrcetOfDoingXOrMorePoints(50).ToString("F0")}%";
     }
-    void ShowMoreThan100PointsPrcent()
+    void ShowMoreThan100PointsPrcent()// metodo que muestra el porcentage de hacer x numero de puntos 
     {
         _moreThan100PrcentText.text = $"Percentage of doing more than 100: {PrcetOfDoingXOrMorePoints(100).ToString("F0")}%";
     }
-    void ShowMoreThan1000PointsPrcent()
+    void ShowMoreThan1000PointsPrcent()// metodo que muestra el porcentage de hacer x numero de puntos 
     {
         _moreThan1000PrcentText.text = $"Percentage of doing more than 1000: {PrcetOfDoingXOrMorePoints(1000).ToString("F0")}%";
     }
 
 
-    float PrcetOfDoingXOrMorePoints(int value)
+    float PrcetOfDoingXOrMorePoints(int value)// metodo que muestra el porcentage de hacer x numero de puntos 
     {
 
         int valueDoneCount = 0;

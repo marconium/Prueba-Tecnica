@@ -84,7 +84,7 @@ public class GameController : Singleton<GameController>
 
         Data_Manager.Instance.AddNewSave(data);// se guardan los datos del Game
 
-        Data_Manager.Instance.SaveData();
+        Data_Manager.Instance.SaveData();// se lee el Json para que se pueda exponer en la UI del menu
 
         Debug.Log("Eliminado");
     }

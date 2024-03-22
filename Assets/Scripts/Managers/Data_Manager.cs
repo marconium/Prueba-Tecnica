@@ -22,7 +22,7 @@ public class Data_Manager : Singleton<Data_Manager>
 
         DontDestroyOnLoad(this.gameObject);
 
-        SaveData();
+        SaveData();// se cargan los datos al iniciar
     }
     private void Start()
     {

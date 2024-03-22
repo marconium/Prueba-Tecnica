@@ -55,9 +55,8 @@ public class BallsGenerator : MonoBehaviour
             }
         }
     }
-    public void SpawnBall()
+    public void SpawnBall()// metodo que coloca la bola en su lugar de lanzamiento
     {
-        int hola = Random.Range(1, 100);
         _instantiateBallsTransform = new Vector2(Random.Range(_collider.bounds.min.x, _collider.bounds.max.x), _collider.transform.position.y);
 
         GameObject NewBall = _pooler.GetInstanceFromPool();
@@ -65,7 +64,7 @@ public class BallsGenerator : MonoBehaviour
         NewBall.SetActive(true);
     }
 
-    private float GetSpawnDelay()
+    private float GetSpawnDelay()// metodo para recojer el delay entre bolas
     {
         float delay = 0f;
         if (spawMode == GlobalEnum.SpawnModes.Fixed)
@@ -80,7 +79,7 @@ public class BallsGenerator : MonoBehaviour
         return delay;
     }
 
-    private float GetRandomDelay()
+    private float GetRandomDelay()// metodo que devuelve un delay random entre los dos numeros que le damos
     {
         float randomTimer = Random.Range(minRandomDelay, maxRandomDelay);
         return randomTimer;

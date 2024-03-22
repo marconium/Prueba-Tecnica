@@ -41,18 +41,18 @@ public class UI_Manager : Singleton<UI_Manager>
 
     private void Update()
     {
-        if (_isShake)
+        if (_isShake)// si esta activo se realiza el shake 
         {
             Shake(_currentTransform);// Se activa el Shake
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape) && GameController.Instance.CanOpenMenu)
+        if (Input.GetKeyDown(KeyCode.Escape) && GameController.Instance.CanOpenMenu)// Al pulsar Esc y si se puede habrir el menu se habre o cierra
         {
             HandleMenu();
         }
     }
 
-    void ActivateUI()
+    void ActivateUI()// metodo que se llama para activar toda la UI
     {
         ActivateLives();
         UpdatePointsUI();
@@ -60,7 +60,7 @@ public class UI_Manager : Singleton<UI_Manager>
     }
 
 
-    void HandleMenu()
+    void HandleMenu()// metodo que lleva el activar o desactivar el menu de pausa
     {
         if (_menuObj.activeSelf == false)
         {
@@ -74,13 +74,13 @@ public class UI_Manager : Singleton<UI_Manager>
         }
     }
 
-    public void ClosePuseMenu()
+    public void ClosePuseMenu()// metodo para cerrar menu
     {
         _menuObj.SetActive(false);
         Time.timeScale = 1;
     }
 
-    public IEnumerator FinalGame()
+    public IEnumerator FinalGame()// Corrutina que cambia a la escena del menu pasado un tiempo
     {
         _finalPanel.SetActive(true);
 

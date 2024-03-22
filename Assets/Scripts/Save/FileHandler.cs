@@ -53,7 +53,7 @@ public static class FileHandler
         return Application.persistentDataPath + "/" + filename;
     }
 
-    private static void WriteFile(string path, string content)
+    private static void WriteFile(string path, string content)// metodo para escibir o Crear un archivo dandole el camino
     {
         FileStream fileStream = new FileStream(path, FileMode.Create);
 
@@ -63,7 +63,7 @@ public static class FileHandler
         }
     }
 
-    private static string ReadFile(string path)
+    private static string ReadFile(string path)// metodo para leer un archivo dandole el camino
     {
         if (File.Exists(path))
         {
@@ -77,7 +77,7 @@ public static class FileHandler
         return "";
     }
 }
-public static class JsonHelper
+public static class JsonHelper// se trata de una clase que facilita la conversion hacia Json
 {
     public static T[] FromJson<T>(string json)
     {

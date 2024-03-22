@@ -70,8 +70,8 @@ public class Points_Manager : MonoBehaviour
         {
             ResetMulti();
         }
-        AudioManager.Instance.PlaySfx(_absorbSFX);
-        AnimatorController.Instance.Play(GlobalEnum.AnimationId.Absorb);
+        AudioManager.Instance.PlaySfx(_absorbSFX);// se activa el sonido
+        AnimatorController.Instance.Play(GlobalEnum.AnimationId.Absorb);// se activa la animación
     }
 
 

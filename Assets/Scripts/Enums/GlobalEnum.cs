@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GlobalEnum : Singleton<GlobalEnum>
 {
+    // Basicamente es una clase que guarda todos los Enums para su facil acceso y modificación
    public enum BallTypes
     {
         Normal,
