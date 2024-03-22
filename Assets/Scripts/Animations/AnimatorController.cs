@@ -13,7 +13,7 @@ public class AnimatorController : Singleton<AnimatorController>
     }
 
    
-    public void Pause()
+    public void Pause()// metodo para pausar animación
     {
         if (animator == null)
         {
@@ -22,7 +22,7 @@ public class AnimatorController : Singleton<AnimatorController>
         animator.speed = 0;
     }
 
-    public void UnPause()
+    public void UnPause()// metodo para desPausar animacion
     {
         if (animator == null)
         {
@@ -32,7 +32,7 @@ public class AnimatorController : Singleton<AnimatorController>
     }
 
 
-    public void Play(GlobalEnum.AnimationId animationId)
+    public void Play(GlobalEnum.AnimationId animationId)// metodo para iniciar animación
     {
         if (animator == null)
         {

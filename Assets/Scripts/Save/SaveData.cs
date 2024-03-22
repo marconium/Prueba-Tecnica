@@ -1,6 +1,6 @@
 using System;
 
-[Serializable]
+[Serializable]// clase que sirve para guardar la data de cada partida y ser usada en la lista
 public class SaveData
 {
     public int _id;

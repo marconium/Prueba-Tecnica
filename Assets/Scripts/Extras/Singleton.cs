@@ -5,7 +5,7 @@ using UnityEngine;
 public class Singleton<T> : MonoBehaviour where T : Component
 {
     private static T instance;
-
+    // Esta clase esta hecha unicamente para generar Singletons de otras clases facilmente
     public static T Instance
     {
         get

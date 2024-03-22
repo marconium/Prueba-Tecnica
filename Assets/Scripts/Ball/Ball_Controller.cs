@@ -64,10 +64,10 @@ public class Ball_Controller : MonoBehaviour
         {
             _ballType = GlobalEnum.BallTypes.Normal;
         }
-        PlaceSprite(_ballType);
+        PlaceSprite(_ballType);// metodo que cambia el sprite y el _collider dependiendo de su tipo
     }
 
-    void PlaceSprite(GlobalEnum.BallTypes type)
+    void PlaceSprite(GlobalEnum.BallTypes type)// metodo que cambia el sprite y el _collider dependiendo de su tipo
     {
         switch (type)
         {

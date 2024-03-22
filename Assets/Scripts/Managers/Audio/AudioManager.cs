@@ -30,11 +30,11 @@ public class AudioManager : Singleton<AudioManager>
         DontDestroyOnLoad(this.gameObject);
     }
 
-    public void PlaySfx(AudioClip audioClip)
+    public void PlaySfx(AudioClip audioClip)// metodo para iniciar SFX
     {
         sfxAudioSource.PlayOneShot(audioClip);
     }
-    public void PlayMusic(AudioClip audioClip)
+    public void PlayMusic(AudioClip audioClip)// metodo para iniciar Musica
     {
         if (musicAudioSource.clip != audioClip)
         {
@@ -47,7 +47,7 @@ public class AudioManager : Singleton<AudioManager>
 
     private void Update()
     {
-        if (musicVolume != _musicVolume)
+        if (musicVolume != _musicVolume) // metodos para controlar el volumen de la musica y los SFX
         {
             _musicVolume = musicVolume;
             musicAudioSource.volume = musicVolume;
