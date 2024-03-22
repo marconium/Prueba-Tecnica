@@ -29,6 +29,7 @@ public class GameController : Singleton<GameController>
 
     private void Start()
     {
+        AudioManager.Instance.PlayMusic(AudioManager.Instance.GameMusic);
         _currentLives = _maxLives;
         _canOpenMenu = true;
     }

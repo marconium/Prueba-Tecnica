@@ -9,6 +9,10 @@ public class Points_Manager : MonoBehaviour
 
     [SerializeField] Animator _animator;
 
+    [Header("Audio Clip Reference")]
+
+    [SerializeField] AudioClip _absorbSFX;
+
     void AddPointsWithMulti(float points)// Metodo para sumar puntos con multi
     {
         GameController.Instance.CurrentPoints += points * GameController.Instance.CurrentPointsMultiplier;// Se suman los puntos multiplicados por el multiplicador
@@ -66,6 +70,7 @@ public class Points_Manager : MonoBehaviour
         {
             ResetMulti();
         }
+        AudioManager.Instance.PlaySfx(_absorbSFX);
         AnimatorController.Instance.Play(GlobalEnum.AnimationId.Absorb);
     }
 

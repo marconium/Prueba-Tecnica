@@ -36,6 +36,7 @@ public class Menu_UI_Manager : MonoBehaviour
         ShowSavedGamesData();
         ShowTotalPoints();
         ShowStatistics();
+        AudioManager.Instance.PlayMusic(AudioManager.Instance.MenuMusic);
     }
 
     void ShowSavedGamesData()
