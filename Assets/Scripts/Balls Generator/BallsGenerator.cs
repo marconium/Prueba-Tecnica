@@ -61,7 +61,25 @@ public class BallsGenerator : MonoBehaviour
 
         GameObject NewBall = _pooler.GetInstanceFromPool();
         NewBall.transform.position = _instantiateBallsTransform;
+        PutBallGravity(NewBall);
         NewBall.SetActive(true);
+    }
+
+    void PutBallGravity(GameObject NewBall)
+    {
+        Rigidbody2D _ballRigid = NewBall.GetComponent<Rigidbody2D>();
+        if(GameController.Instance.CurrentPoints >= 100 && GameController.Instance.CurrentPoints < 500)
+        {
+            _ballRigid.gravityScale = 0.5f;
+        }
+        else if (GameController.Instance.CurrentPoints >= 500 && GameController.Instance.CurrentPoints < 1000)
+        {
+            _ballRigid.gravityScale = 0.8f;
+        }
+        else if (GameController.Instance.CurrentPoints >= 1000)
+        {
+            _ballRigid.gravityScale = 0.9f;
+        }
     }
 
     private float GetSpawnDelay()// metodo para recojer el delay entre bolas
